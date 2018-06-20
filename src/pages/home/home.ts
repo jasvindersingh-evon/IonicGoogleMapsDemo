@@ -10,16 +10,16 @@ import { Platform } from 'ionic-angular/platform/platform';
 export class HomePage {
 
   constructor(public navCtrl: NavController, public platform: Platform) {
-    platform.ready().then(()=>{
-      this.loadMap()
-    })
+    
   }
 
   map: GoogleMap;
   
 
   ionViewDidLoad() {
-    
+    this.platform.ready().then(()=>{
+      this.loadMap()
+    })
   }
 
   loadMap() {
@@ -35,7 +35,8 @@ export class HomePage {
        }
     };
 
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
+    this.map = GoogleMaps.create('map_canvas');
+    // this.map.setDiv('map')
 
     let marker: Marker = this.map.addMarkerSync({
       title: 'Ionic',
